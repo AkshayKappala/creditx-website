@@ -4,7 +4,6 @@ import { Architecture } from "./components/Architecture";
 import { TransactionFlow } from "./components/TransactionFlow";
 import { Features } from "./components/Features";
 import { TechStack } from "./components/TechStack";
-import { CTA } from "./components/CTA";
 
 export default function App() {
   return (
@@ -15,7 +14,6 @@ export default function App() {
       <TransactionFlow />
       <Features />
       <TechStack />
-      <CTA />
       
       {/* Footer */}
       <footer className="relative py-12 px-6 border-t border-white/10">

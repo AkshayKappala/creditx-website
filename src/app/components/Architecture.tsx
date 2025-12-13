@@ -15,46 +15,50 @@ const services = [
     name: "creditMainServ",
     port: "8080",
     icon: LuServer,
-    description: "Transaction orchestration & workflow management",
+    description: "API entry point and transaction lifecycle coordinator",
     color: "from-cyan-400 to-blue-500",
     position: { x: 0, y: 0 },
     github: "https://github.com/creditx-platform/creditMainServ",
+    migrationUrl: "https://github.com/creditx-platform/creditMainServ/tree/main/src/main/resources/db/migration",
   },
   {
     id: 2,
     name: "creditHoldServ",
     port: "8081",
     icon: LuShield,
-    description: "Hold authorization, fraud detection & blocklist",
+    description: "Authorization holds and risk checks (fraud, blocklist, balance)",
     color: "from-purple-400 to-pink-500",
     position: { x: 1, y: 0 },
     github: "https://github.com/creditx-platform/creditHoldServ",
+    migrationUrl: "https://github.com/creditx-platform/creditHoldServ/tree/main/src/main/resources/db/migration",
   },
   {
     id: 3,
     name: "creditPostingServ",
     port: "8082",
     icon: LuGitBranch,
-    description: "Transaction settlement & posting",
+    description: "Ledger posting and settlement",
     color: "from-pink-400 to-rose-500",
     position: { x: 0.5, y: 1 },
     github: "https://github.com/creditx-platform/creditPostingServ",
+    migrationUrl: "https://github.com/creditx-platform/creditPostingServ/tree/main/src/main/resources/db/migration",
   },
   {
     id: 4,
     name: "creditPromoServ",
     port: "8083",
     icon: LuCoins,
-    description: "Promotion evaluation & cashback calculation",
+    description: "Promotions and cashback",
     color: "from-violet-400 to-purple-500",
     position: { x: 1.5, y: 1 },
     github: "https://github.com/creditx-platform/creditPromoServ",
+    migrationUrl: "https://github.com/creditx-platform/creditPromoServ/tree/main/src/main/resources/db/migration",
   },
 ];
 
 export function Architecture() {
   return (
-    <section id="architecture" className="relative py-32 px-6 overflow-hidden">
+    <section id="architecture" className="relative py-24 px-6 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
       
@@ -74,13 +78,13 @@ export function Architecture() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <h2 className="text-5xl md:text-6xl mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             CreditX Architecture
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Four specialized microservices orchestrating transactions through event-driven communication
+            The platform is powered by four key microservices that communicate via Kafka events to support scalable and reliable transaction processing.
           </p>
         </motion.div>
         
@@ -143,7 +147,7 @@ export function Architecture() {
               </div>
               <div>
                 <h3 className="text-2xl text-white mb-1">Apache Kafka Event Bus</h3>
-                <p className="text-gray-400">Transactional outbox pattern with saga orchestration</p>
+                <p className="text-gray-400">Kafka connects the services with domain events, and an outbox keeps event publishing reliable</p>
               </div>
             </div>
             <div className="flex gap-4">
@@ -171,10 +175,9 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
-      onClick={() => window.open(service.github, '_blank')}
+      transition={{ duration: 0.45 }}
+      whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.15 } }}
+      className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-colors duration-300"
     >
       {/* Gradient glow on hover */}
       <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300`} />
@@ -185,23 +188,32 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
             <Icon className="w-8 h-8 text-white" />
           </div>
           <div className="flex items-center gap-2">
-            <div className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20">
-              <span className="text-xs text-cyan-400 font-mono">:{service.port}</span>
-            </div>
-            <div className="p-2 rounded-full bg-white/10 border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity">
-              <LuGithub className="w-4 h-4 text-white" />
-            </div>
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs text-purple-300 font-mono hover:bg-white/20"
+              onClick={() => window.open(service.migrationUrl, '_blank')}
+            >
+              <LuDatabase className="w-3 h-3" />
+              Schema
+            </motion.button>
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs text-cyan-200 font-mono hover:bg-white/20"
+              onClick={() => window.open(service.github, '_blank')}
+            >
+              <LuGithub className="w-3 h-3" />
+              Source
+            </motion.button>
           </div>
         </div>
         
         <h3 className="text-2xl text-white mb-2">{service.name}</h3>
         <p className="text-gray-400">{service.description}</p>
         
-        {/* Database indicator */}
-        <div className="mt-6 flex items-center gap-2">
-          <LuDatabase className="w-4 h-4 text-cyan-400" />
-          <span className="text-sm text-gray-500">Oracle Schema</span>
-        </div>
       </div>
     </motion.div>
   );

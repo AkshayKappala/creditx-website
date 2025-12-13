@@ -11,45 +11,45 @@ import {
 const features = [
   {
     icon: LuWorkflow,
-    title: "Saga Pattern",
-    description: "Choreography-based saga for distributed transaction management across microservices",
+    title: "Workflow Coordination",
+    description: "A clear transaction workflow across services, driven by events and state changes",
     gradient: "from-cyan-400 to-blue-500",
   },
   {
     icon: LuDatabase,
-    title: "Transactional Outbox",
-    description: "At-least-once delivery guarantee with outbox pattern for reliable event publishing",
+    title: "Reliable Events",
+    description: "Outbox-based event publishing so state changes and events stay in sync",
     gradient: "from-purple-400 to-pink-500",
   },
   {
     icon: LuZap,
-    title: "Event-Driven Architecture",
-    description: "Apache Kafka event streaming with separate topics for transactions, holds, and promotions",
+    title: "Kafka Messaging",
+    description: "Kafka topics for transaction, hold, and promotion events between services",
     gradient: "from-pink-400 to-rose-500",
   },
   {
     icon: LuLock,
-    title: "Fraud Detection",
-    description: "Real-time hold authorization with integrated fraud checks and blocklist enforcement",
+    title: "Risk Checks",
+    description: "Hold authorization with fraud checks, blocklist rules, and balance verification",
     gradient: "from-violet-400 to-purple-500",
   },
   {
     icon: LuChartBar,
-    title: "Distributed Tracing",
-    description: "Full request tracing across all services with Zipkin and Spring Cloud Sleuth",
+    title: "End-to-End Tracing",
+    description: "Trace one transaction across services to understand performance and failures",
     gradient: "from-blue-400 to-cyan-500",
   },
   {
     icon: LuRefreshCw,
-    title: "Automated Cashback",
-    description: "Event-driven promotion evaluation and automatic cashback transaction creation",
+    title: "Promotions and Cashback",
+    description: "Promotion evaluation and automatic cashback transaction creation",
     gradient: "from-emerald-400 to-teal-500",
   },
 ];
 
 export function Features() {
   return (
-    <section id="features" className="relative py-32 px-6 overflow-hidden">
+    <section id="features" className="relative py-24 px-6 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-purple-950/10 to-slate-950" />
       
@@ -62,13 +62,13 @@ export function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <h2 className="text-5xl md:text-6xl mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             Powerful Features
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Everything you need to build and scale credit solutions
+            Built for real-world teams: clear ownership, reliable events, safe retries, and visibility across the flow
           </p>
         </motion.div>
         

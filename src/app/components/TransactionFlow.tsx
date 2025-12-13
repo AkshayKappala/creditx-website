@@ -6,41 +6,53 @@ const flowSteps = [
   {
     step: 1,
     service: "creditMainServ",
-    action: "Transaction Created",
-    description: "Client initiates transaction request",
+    action: "Create transaction request",
+    description: "Receive the request, validate it, and create the initial transaction record",
     color: "from-cyan-400 to-blue-500",
     status: "PENDING",
+    emits: "credit.transaction.created",
   },
   {
     step: 2,
     service: "creditHoldServ",
-    action: "Hold Authorization",
-    description: "Fraud check, blocklist, balance verification",
+    action: "Authorize hold",
+    description: "Run risk checks and place an authorization hold",
     color: "from-purple-400 to-pink-500",
     status: "AUTHORIZED",
+    emits: "credit.hold.authorized",
   },
   {
     step: 3,
     service: "creditPostingServ",
-    action: "Transaction Posting",
-    description: "Settlement and ledger update",
+    action: "Post to ledger",
+    description: "Finalize the transaction by posting to the ledger",
     color: "from-pink-400 to-rose-500",
     status: "POSTED",
+    emits: "credit.transaction.posted",
   },
   {
     step: 4,
     service: "creditPromoServ",
-    action: "Cashback Applied",
-    description: "Promotion evaluation and rewards",
+    action: "Apply promotions & cashback",
+    description: "Evaluate promotions and create a cashback reward transaction",
     color: "from-violet-400 to-purple-500",
     status: "COMPLETED",
   },
 ];
 
 const kafkaTopics = [
-  { name: "transactions", events: ["authorized", "posted", "failed"] },
-  { name: "holds", events: ["created", "voided", "expired"] },
-  { name: "promotions", events: ["applied", "calculated"] },
+  {
+    name: "credit.transaction.events",
+    events: ["transaction.created", "transaction.posted", "transaction.failed"],
+  },
+  {
+    name: "credit.hold.events",
+    events: ["hold.requested", "hold.authorized", "hold.voided"],
+  },
+  {
+    name: "credit.promotion.events",
+    events: ["promotion.evaluated", "cashback.created"],
+  },
 ];
 
 export function TransactionFlow() {
@@ -100,7 +112,7 @@ export function TransactionFlow() {
   }, []);
 
   return (
-    <section id="flow" className="relative py-32 px-6 overflow-hidden">
+    <section id="flow" className="relative py-24 px-6 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-purple-950/10 to-slate-950" />
       
@@ -113,18 +125,18 @@ export function TransactionFlow() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <h2 className="text-5xl md:text-6xl mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             Transaction Flow
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            From authorization to cashback, every step orchestrated through events
+            Follow one transaction as it moves across services, and see the events that drive the next step
           </p>
         </motion.div>
         
         {/* Flow Steps */}
-        <div className="max-w-5xl mx-auto mb-20">
+        <div className="max-w-5xl mx-auto mb-12">
           <div className="relative" ref={timelineRef}>
             {/* Per-segment lines that appear once both adjacent steps are visible */}
             {segments.map((segment, idx) => {
@@ -175,7 +187,7 @@ export function TransactionFlow() {
                         <p className="text-sm text-cyan-400 font-mono">{step.service}</p>
                       </div>
                       <div className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30">
-                        <span className="text-sm text-cyan-300">{step.status}</span>
+                        <span className="text-sm text-cyan-300">status: {step.status}</span>
                       </div>
                     </div>
                     <p className="text-gray-400">{step.description}</p>
@@ -183,7 +195,9 @@ export function TransactionFlow() {
                     {index < flowSteps.length - 1 && (
                       <div className="mt-4 flex items-center gap-2 text-sm text-purple-400">
                         <LuArrowRight className="w-4 h-4" />
-                        <span>Kafka event triggers next service</span>
+                        <span>
+                          Kafka event: {flowSteps[index].emits} (consumed by {flowSteps[index + 1].service})
+                        </span>
                       </div>
                     )}
                   </div>
@@ -199,7 +213,7 @@ export function TransactionFlow() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-20"
+          className="mb-12"
         >
           <h3 className="text-3xl text-white mb-8 text-center">Kafka Event Topics</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -241,20 +255,20 @@ export function TransactionFlow() {
         >
           <div className="p-8 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent backdrop-blur-md border border-cyan-500/20 text-center">
             <LuCircleCheck className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-            <div className="text-4xl text-white mb-2">Saga</div>
-            <div className="text-gray-400">Choreography Pattern</div>
+            <div className="text-4xl text-white mb-2">Workflow</div>
+            <div className="text-gray-400">Coordination across services</div>
           </div>
           
           <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 via-transparent to-transparent backdrop-blur-md border border-purple-500/20 text-center">
             <LuClock className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-            <div className="text-4xl text-white mb-2">5 min</div>
-            <div className="text-gray-400">Hold Expiry Check</div>
+            <div className="text-4xl text-white mb-2">Safe retries</div>
+            <div className="text-gray-400">Duplicate-safe processing</div>
           </div>
           
           <div className="p-8 rounded-3xl bg-gradient-to-br from-pink-500/10 via-transparent to-transparent backdrop-blur-md border border-pink-500/20 text-center">
             <LuTrendingUp className="w-12 h-12 text-pink-400 mx-auto mb-4" />
             <div className="text-4xl text-white mb-2">Outbox</div>
-            <div className="text-gray-400">At-Least-Once Delivery</div>
+            <div className="text-gray-400">Reliable event publishing</div>
           </div>
         </motion.div>
       </div>

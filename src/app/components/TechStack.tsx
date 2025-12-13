@@ -14,7 +14,7 @@ const technologies = [
 
 export function TechStack() {
   return (
-    <section id="tech" className="relative py-32 px-6 overflow-hidden">
+    <section id="tech" className="relative py-24 px-6 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
       
@@ -24,13 +24,13 @@ export function TechStack() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <h2 className="text-5xl md:text-6xl mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
             Modern Tech Stack
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Built with industry-leading technologies for reliability and scale
+            Built with Spring Boot, Kafka, and Oracle, plus migrations and tracing to support real development and operations
           </p>
         </motion.div>
         
@@ -65,7 +65,7 @@ export function TechStack() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-20 p-8 rounded-3xl bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10"
+          className="mt-12 p-8 rounded-3xl bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10"
         >
           <h3 className="text-2xl text-white mb-6 text-center">Transaction API Example</h3>
           
@@ -88,7 +88,7 @@ export function TechStack() {
               {'\n  '}<span className="text-pink-400">"merchantId"</span>: <span className="text-green-400">"MERCH_789"</span>
               {'\n'}<span className="text-white">{'}'}</span>
               {'\n\n'}
-              <span className="text-gray-500">// Response: AUTHORIZED | DECLINED</span>
+              <span className="text-gray-500">// Response: status: PENDING | DECLINED</span>
             </pre>
           </div>
         </motion.div>

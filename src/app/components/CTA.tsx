@@ -63,7 +63,7 @@ export function CTA() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
             >
-              Explore the code, documentation, and architecture of this event-driven microservices platform
+              Share this project with your team to align on the product flow, service boundaries, and operational concerns. Run it locally, follow a transaction end to end, and use the code and docs as a reference for implementation details.
             </motion.p>
             
             <motion.div

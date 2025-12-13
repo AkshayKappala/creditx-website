@@ -43,7 +43,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-8"
         >
           <LuSparkles className="w-4 h-4 text-cyan-400" />
-          <span className="text-sm text-gray-300">Event-driven transaction processing platform</span>
+          <span className="text-sm text-gray-300">End-to-end credit transaction processing</span>
         </motion.div>
         
         <motion.h1
@@ -66,7 +66,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
         >
-          Spring Boot microservices with Kafka event streaming, saga orchestration, and transactional outbox pattern for reliable credit transaction processing
+          A distributed, event-driven SaaS solution that manages the transaction lifecycle from initiation through authorization, posting, and promotions.
         </motion.p>
         
         <motion.div
