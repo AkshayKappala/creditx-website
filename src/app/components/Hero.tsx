@@ -80,8 +80,8 @@ export function Hero() {
             className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-8 shadow-lg shadow-cyan-500/50"
             onClick={() => window.open('https://github.com/creditx-platform/creditx', '_blank')}
           >
-            <LuGithub className="mr-2 w-5 h-5" />
-            View Source Code
+            <LuGithub className="size-5" />
+            <span className="leading-none">View Source Code</span>
           </Button>
           <Button
             size="lg"
@@ -89,8 +89,8 @@ export function Hero() {
             className="bg-white/5 hover:bg-white/10 text-white border-white/20 rounded-full px-8 backdrop-blur-md"
             onClick={() => window.open('https://github.com/creditx-platform/creditx#readme', '_blank')}
           >
-            <LuBookOpen className="mr-2 w-5 h-5" />
-            Read Documentation
+            <LuBookOpen className="size-5" />
+            <span className="leading-none">Read Documentation</span>
           </Button>
         </motion.div>
       </div>

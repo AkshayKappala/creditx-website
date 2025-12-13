@@ -192,8 +192,8 @@ export function Navigation() {
               className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full"
               onClick={() => window.open('https://github.com/creditx-platform/creditx', '_blank')}
             >
-              <LuGithub className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">Source</span>
+              <LuGithub className="size-4" />
+              <span className="hidden sm:inline leading-none">Source</span>
             </Button>
             <Button
               variant="ghost"

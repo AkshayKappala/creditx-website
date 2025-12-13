@@ -187,7 +187,7 @@ export function TransactionFlow() {
                         <p className="text-sm text-cyan-400 font-mono">{step.service}</p>
                       </div>
                       <div className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30">
-                        <span className="text-sm text-cyan-300">status: {step.status}</span>
+                        <span className="text-sm text-cyan-300">Output: {step.status}</span>
                       </div>
                     </div>
                     <p className="text-gray-400">{step.description}</p>
@@ -196,7 +196,7 @@ export function TransactionFlow() {
                       <div className="mt-4 flex items-center gap-2 text-sm text-purple-400">
                         <LuArrowRight className="w-4 h-4" />
                         <span>
-                          Publish {flowSteps[index].emits} event (next: {flowSteps[index + 1].service})
+                          Publish {flowSteps[index].emits} event
                         </span>
                       </div>
                     )}

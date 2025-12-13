@@ -78,8 +78,8 @@ export function CTA() {
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-10 shadow-2xl shadow-cyan-500/50 text-lg"
                 onClick={() => window.open('https://github.com/creditx-platform/creditx', '_blank')}
               >
-                <LuGithub className="mr-2 w-5 h-5" />
-                Source
+                <LuGithub className="size-5" />
+                <span className="leading-none">Source</span>
               </Button>
               <Button
                 size="lg"
@@ -87,8 +87,8 @@ export function CTA() {
                 className="bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-full px-10 backdrop-blur-md text-lg"
                 onClick={() => window.open('https://github.com/creditx-platform/creditx#readme', '_blank')}
               >
-                <LuBookOpen className="mr-2 w-5 h-5" />
-                Documentation
+                <LuBookOpen className="size-5" />
+                <span className="leading-none">Documentation</span>
               </Button>
             </motion.div>
             

@@ -25,10 +25,8 @@ export default function App() {
             <div className="text-gray-400 text-sm">
               © 2025 CreditX Platform. All rights reserved.
             </div>
-            <div className="flex gap-8 text-sm text-gray-400">
-              <a href="#privacy" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#terms" className="hover:text-white transition-colors">Terms</a>
-              <a href="#security" className="hover:text-white transition-colors">Security</a>
+            <div className="text-sm text-gray-400">
+              Disclaimer: This website is profoundly vibe-coded!
             </div>
           </div>
         </div>

@@ -10,8 +10,8 @@ type ApiEndpoint = {
   method: "POST";
   path: string;
   description: string;
-  requestSchema: string[];
-  responseSchema: string[];
+  requestJson: string;
+  responseJson: string;
   curl: string;
 };
 
@@ -23,13 +23,16 @@ const endpoints: ApiEndpoint[] = [
     method: "POST",
     path: "/api/transactions",
     description: "Creates an inbound transaction and returns an initial status.",
-    requestSchema: [
-      "issuerAccountId: number",
-      "merchantAccountId: number",
-      "amount: number",
-      "currency?: string (default: USD)",
-    ],
-    responseSchema: ["transactionId: number", "status: PENDING | AUTHORIZED | SUCCESS | FAILED"],
+    requestJson: `{
+  "issuerAccountId": 1001,
+  "merchantAccountId": 2001,
+  "amount": 1500.0,
+  "currency": "USD"
+}`,
+    responseJson: `{
+  "transactionId": 123,
+  "status": "PENDING"
+}`,
     curl: `curl -X POST http://localhost:8080/api/transactions \\\n  -H "Content-Type: application/json" \\\n  -d '{"issuerAccountId":1001,"merchantAccountId":2001,"amount":1500.00,"currency":"USD"}'`,
   },
   {
@@ -39,8 +42,14 @@ const endpoints: ApiEndpoint[] = [
     method: "POST",
     path: "/api/transactions/{id}/commit",
     description: "Commits a previously authorized transaction using the hold identifier.",
-    requestSchema: ["holdId: number"],
-    responseSchema: ["transactionId: number", "status: PENDING | AUTHORIZED | SUCCESS | FAILED", "message: string"],
+    requestJson: `{
+  "holdId": 456
+}`,
+    responseJson: `{
+  "transactionId": 123,
+  "status": "SUCCESS",
+  "message": "Committed"
+}`,
     curl: `curl -X POST http://localhost:8080/api/transactions/123/commit \\\n  -H "Content-Type: application/json" \\\n  -d '{"holdId":456}'`,
   },
   {
@@ -50,13 +59,16 @@ const endpoints: ApiEndpoint[] = [
     method: "POST",
     path: "/api/transactions/cashback",
     description: "Creates a cashback credit transaction for an eligible posted purchase.",
-    requestSchema: [
-      "issuerAccountId: number",
-      "merchantAccountId: number",
-      "amount: number",
-      "currency?: string (default: USD)",
-    ],
-    responseSchema: ["transactionId: number", "status: PENDING | AUTHORIZED | SUCCESS | FAILED"],
+    requestJson: `{
+  "issuerAccountId": 1001,
+  "merchantAccountId": 9999,
+  "amount": 25.0,
+  "currency": "USD"
+}`,
+    responseJson: `{
+  "transactionId": 124,
+  "status": "PENDING"
+}`,
     curl: `curl -X POST http://localhost:8080/api/transactions/cashback \\\n  -H "Content-Type: application/json" \\\n  -d '{"issuerAccountId":1001,"merchantAccountId":9999,"amount":25.00,"currency":"USD"}'`,
   },
   {
@@ -66,17 +78,28 @@ const endpoints: ApiEndpoint[] = [
     method: "POST",
     path: "/api/holds",
     description: "Creates an authorization hold after risk checks and balance validation.",
-    requestSchema: [
-      "transactionId: number",
-      "issuerAccountId: number",
-      "merchantAccountId: number",
-      "amount: number",
-      "currency?: string (default: USD)",
-    ],
-    responseSchema: ["holdId: number", "status: AUTHORIZED | CAPTURED | VOIDED | EXPIRED"],
+    requestJson: `{
+  "transactionId": 123,
+  "issuerAccountId": 1001,
+  "merchantAccountId": 2001,
+  "amount": 1500.0,
+  "currency": "USD"
+}`,
+    responseJson: `{
+  "holdId": 456,
+  "status": "AUTHORIZED"
+}`,
     curl: `curl -X POST http://localhost:8081/api/holds \\\n  -H "Content-Type: application/json" \\\n  -d '{"transactionId":123,"issuerAccountId":1001,"merchantAccountId":2001,"amount":1500.00,"currency":"USD"}'`,
   },
 ];
+
+function JsonCodeCard({ text }: { text: string }) {
+  return (
+    <div className="rounded-2xl bg-white/5 p-6 border border-white/10 overflow-x-auto">
+      <pre className="text-gray-300 whitespace-pre font-mono text-sm">{text}</pre>
+    </div>
+  );
+}
 
 function CodeBlock({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -189,22 +212,13 @@ export function ApiUsage() {
               <p className="text-gray-400 mb-6">{ep.description}</p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                <div>
                   <div className="text-white mb-3">Request</div>
-                  <ul className="space-y-2 text-sm text-gray-300 font-mono">
-                    {ep.requestSchema.map((line) => (
-                      <li key={line}>{line}</li>
-                    ))}
-                  </ul>
+                  <JsonCodeCard text={ep.requestJson} />
                 </div>
-
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                <div>
                   <div className="text-white mb-3">Response</div>
-                  <ul className="space-y-2 text-sm text-gray-300 font-mono">
-                    {ep.responseSchema.map((line) => (
-                      <li key={line}>{line}</li>
-                    ))}
-                  </ul>
+                  <JsonCodeCard text={ep.responseJson} />
                 </div>
               </div>
 
