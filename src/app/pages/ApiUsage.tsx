@@ -95,8 +95,8 @@ const endpoints: ApiEndpoint[] = [
 
 function JsonCodeCard({ text }: { text: string }) {
   return (
-    <div className="rounded-2xl bg-white/5 p-6 border border-white/10 overflow-x-auto">
-      <pre className="text-gray-300 whitespace-pre font-mono text-sm">{text}</pre>
+    <div className="rounded-2xl bg-white/5 p-4 sm:p-6 border border-white/10 overflow-x-auto">
+      <pre className="text-gray-300 whitespace-pre font-mono text-xs sm:text-sm">{text}</pre>
     </div>
   );
 }
@@ -132,8 +132,8 @@ function CodeBlock({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <div className="rounded-2xl bg-slate-950/80 p-6 border border-white/5 font-mono text-sm overflow-x-auto">
-      <div className="flex items-center justify-between gap-4 mb-4">
+    <div className="rounded-2xl bg-slate-950/80 p-4 sm:p-6 border border-white/5 font-mono text-sm overflow-x-auto">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-red-500" />
           <div className="w-3 h-3 rounded-full bg-yellow-500" />
@@ -143,7 +143,7 @@ function CodeBlock({ text }: { text: string }) {
         <Button
           type="button"
           variant="outline"
-          className="h-8 px-3 bg-white/5 hover:bg-white/10 text-white border-white/20 rounded-full"
+          className="h-8 px-3 bg-white/5 hover:bg-white/10 text-white border-white/20 rounded-full w-full sm:w-auto"
           onClick={copy}
           title="Copy to clipboard"
         >
@@ -160,7 +160,7 @@ function CodeBlock({ text }: { text: string }) {
           )}
         </Button>
       </div>
-      <pre className="text-gray-300 whitespace-pre">{text}</pre>
+      <pre className="text-gray-300 whitespace-pre text-xs sm:text-sm">{text}</pre>
     </div>
   );
 }
@@ -193,7 +193,7 @@ export function ApiUsage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10"
+              className="p-5 sm:p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
                 <div>

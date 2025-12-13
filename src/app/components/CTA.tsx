@@ -40,7 +40,7 @@ export function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="p-12 md:p-16 rounded-[3rem] bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl border border-white/20 text-center relative overflow-hidden"
+          className="p-8 sm:p-12 md:p-16 rounded-[3rem] bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl border border-white/20 text-center relative overflow-hidden"
         >
           {/* Inner glow */}
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 rounded-[3rem]" />

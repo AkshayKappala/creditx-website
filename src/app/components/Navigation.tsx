@@ -2,6 +2,14 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { motion } from "motion/react";
 import { LuGithub, LuMenu, LuZap } from "react-icons/lu";
 import { Button } from "./ui/button";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 
 const NAV_ITEMS = [
   { id: "architecture", label: "Architecture" },
@@ -125,15 +133,22 @@ export function Navigation() {
     return () => window.removeEventListener("resize", updateHighlight);
   }, [updateHighlight]);
 
+  const scrollToSection = useCallback((id: string) => {
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
+      className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between p-4 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10">
+        <div className="flex items-center justify-between p-3 sm:p-4 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10">
           {/* Logo */}
           <button
             type="button"
@@ -146,7 +161,7 @@ export function Navigation() {
             <div className="p-2 rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-500">
               <LuZap className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl text-white">CreditX</span>
+            <span className="text-lg sm:text-xl text-white">CreditX</span>
           </button>
           
           {/* Desktop Menu */}
@@ -195,13 +210,45 @@ export function Navigation() {
               <LuGithub className="size-4" />
               <span className="hidden sm:inline leading-none">Source</span>
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-white hover:bg-white/10 rounded-full"
-            >
-              <LuMenu className="w-5 h-5" />
-            </Button>
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden text-white hover:bg-white/10 rounded-full"
+                  aria-label="Open menu"
+                >
+                  <LuMenu className="w-5 h-5" />
+                </Button>
+              </SheetTrigger>
+
+              <SheetContent
+                side="right"
+                className="bg-slate-950/95 text-white border-white/10 backdrop-blur-xl"
+              >
+                <SheetHeader className="px-6 pt-6">
+                  <SheetTitle className="text-white text-lg">Menu</SheetTitle>
+                </SheetHeader>
+
+                <div className="px-6 pb-6">
+                  <div className="space-y-2">
+                    {NAV_ITEMS.map((item) => (
+                      <SheetClose key={item.id} asChild>
+                        <button
+                          type="button"
+                          className="w-full text-left px-4 py-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white"
+                          onClick={() => scrollToSection(item.id)}
+                        >
+                          {item.label}
+                        </button>
+                      </SheetClose>
+                    ))}
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>

@@ -91,7 +91,7 @@ export function Architecture() {
         {/* Services Grid */}
         <div className="relative">
           {/* Connecting lines */}
-          <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
+          <svg className="absolute inset-0 w-full h-full hidden md:block" style={{ zIndex: 1 }}>
             <defs>
               <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="rgb(34, 211, 238)" stopOpacity="0.3" />
@@ -177,17 +177,17 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       viewport={{ once: true }}
       transition={{ duration: 0.45 }}
       whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.15 } }}
-      className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-colors duration-300"
+      className="group relative p-6 sm:p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-colors duration-300"
     >
       {/* Gradient glow on hover */}
       <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300`} />
       
       <div className="relative">
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
           <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.color} shadow-lg`}>
             <Icon className="w-8 h-8 text-white" />
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <motion.button
               type="button"
               whileHover={{ scale: 1.05 }}

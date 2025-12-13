@@ -160,11 +160,11 @@ export function TransactionFlow() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="relative flex items-center gap-8 mb-12 last:mb-0"
+                className="relative flex flex-col md:flex-row md:items-center gap-4 md:gap-8 mb-10 md:mb-12 last:mb-0"
               >
                 {/* Step number with glow */}
                 <div
-                  className="relative flex-shrink-0"
+                  className="relative flex-shrink-0 mx-auto md:mx-0"
                   ref={(el) => {
                     stepRefs.current[index] = el;
                   }}
@@ -181,12 +181,12 @@ export function TransactionFlow() {
                 {/* Content */}
                 <div className="flex-1">
                   <div className="p-6 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300">
-                    <div className="flex items-start justify-between gap-4 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                       <div>
                         <h3 className="text-2xl text-white mb-1">{step.action}</h3>
                         <p className="text-sm text-cyan-400 font-mono">{step.service}</p>
                       </div>
-                      <div className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30">
+                      <div className="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 w-fit">
                         <span className="text-sm text-cyan-300">Output: {step.status}</span>
                       </div>
                     </div>
