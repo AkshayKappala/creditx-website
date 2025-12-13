@@ -10,7 +10,7 @@ const flowSteps = [
     description: "Receive the request, validate it, and create the initial transaction record",
     color: "from-cyan-400 to-blue-500",
     status: "PENDING",
-    emits: "credit.transaction.created",
+    emits: "transaction created",
   },
   {
     step: 2,
@@ -19,7 +19,7 @@ const flowSteps = [
     description: "Run risk checks and place an authorization hold",
     color: "from-purple-400 to-pink-500",
     status: "AUTHORIZED",
-    emits: "credit.hold.authorized",
+    emits: "hold authorized",
   },
   {
     step: 3,
@@ -28,7 +28,7 @@ const flowSteps = [
     description: "Finalize the transaction by posting to the ledger",
     color: "from-pink-400 to-rose-500",
     status: "POSTED",
-    emits: "credit.transaction.posted",
+    emits: "transaction posted",
   },
   {
     step: 4,
@@ -42,16 +42,16 @@ const flowSteps = [
 
 const kafkaTopics = [
   {
-    name: "credit.transaction.events",
-    events: ["transaction.created", "transaction.posted", "transaction.failed"],
+    name: "transactions",
+    events: ["transaction created", "transaction posted", "transaction failed"],
   },
   {
-    name: "credit.hold.events",
-    events: ["hold.requested", "hold.authorized", "hold.voided"],
+    name: "holds",
+    events: ["hold authorized", "hold voided", "hold expired"],
   },
   {
-    name: "credit.promotion.events",
-    events: ["promotion.evaluated", "cashback.created"],
+    name: "promotions",
+    events: ["promotion applied", "cashback created"],
   },
 ];
 
@@ -196,7 +196,7 @@ export function TransactionFlow() {
                       <div className="mt-4 flex items-center gap-2 text-sm text-purple-400">
                         <LuArrowRight className="w-4 h-4" />
                         <span>
-                          Kafka event: {flowSteps[index].emits} (consumed by {flowSteps[index + 1].service})
+                          Publish {flowSteps[index].emits} event (next: {flowSteps[index + 1].service})
                         </span>
                       </div>
                     )}

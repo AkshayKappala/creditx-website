@@ -1,4 +1,5 @@
 import { Navigation } from "./components/Navigation";
+import { ApiUsage } from "./pages/ApiUsage";
 import { Hero } from "./components/Hero";
 import { Architecture } from "./components/Architecture";
 import { TransactionFlow } from "./components/TransactionFlow";
@@ -14,6 +15,7 @@ export default function App() {
       <TransactionFlow />
       <Features />
       <TechStack />
+      <ApiUsage />
       
       {/* Footer */}
       <footer className="relative py-12 px-6 border-t border-white/10">

@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { id: "flow", label: "Flow" },
   { id: "features", label: "Features" },
   { id: "tech", label: "Tech Stack" },
+  { id: "api-usage", label: "API Usage" },
 ];
 
 export function Navigation() {
@@ -160,27 +161,29 @@ export function Navigation() {
               }}
               transition={{ type: "spring", stiffness: 260, damping: 30, mass: 0.6 }}
             />
-            {NAV_ITEMS.map((item, index) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                ref={(el) => {
-                  linkRefs.current[index] = el;
-                }}
-                className={`relative z-10 px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                  activeSection === item.id ? "text-white" : "text-gray-300 hover:text-white"
-                }`}
-                onClick={(event) => {
-                  event.preventDefault();
-                  const target = document.getElementById(item.id);
-                  if (target) {
-                    target.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
-              >
-                {item.label}
-              </a>
-            ))}
+            {NAV_ITEMS.map((item, index) => {
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  ref={(el) => {
+                    linkRefs.current[index] = el;
+                  }}
+                  className={`relative z-10 px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                    activeSection === item.id ? "text-white" : "text-gray-300 hover:text-white"
+                  }`}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    const target = document.getElementById(item.id);
+                    if (target) {
+                      target.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
           
           {/* CTA Buttons */}
@@ -190,7 +193,7 @@ export function Navigation() {
               onClick={() => window.open('https://github.com/creditx-platform/creditx', '_blank')}
             >
               <LuGithub className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">GitHub</span>
+              <span className="hidden sm:inline">Source</span>
             </Button>
             <Button
               variant="ghost"

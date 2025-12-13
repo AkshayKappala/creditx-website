@@ -58,40 +58,6 @@ export function TechStack() {
             </motion.div>
           ))}
         </div>
-        
-        {/* API Showcase */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-12 p-8 rounded-3xl bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10"
-        >
-          <h3 className="text-2xl text-white mb-6 text-center">Transaction API Example</h3>
-          
-          <div className="rounded-2xl bg-slate-950/80 p-6 border border-white/5 font-mono text-sm overflow-x-auto">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
-            </div>
-            
-            <pre className="text-gray-300">
-              <span className="text-cyan-400">POST</span> <span className="text-purple-400">http://localhost:8080/api/transactions</span>
-              {'\n'}
-              <span className="text-gray-500">Content-Type: application/json</span>
-              {'\n\n'}
-              <span className="text-white">{'{'}</span>
-              {'\n  '}<span className="text-pink-400">"accountId"</span>: <span className="text-green-400">"ACC_12345"</span>,
-              {'\n  '}<span className="text-pink-400">"amount"</span>: <span className="text-yellow-400">1500.00</span>,
-              {'\n  '}<span className="text-pink-400">"currency"</span>: <span className="text-green-400">"USD"</span>,
-              {'\n  '}<span className="text-pink-400">"merchantId"</span>: <span className="text-green-400">"MERCH_789"</span>
-              {'\n'}<span className="text-white">{'}'}</span>
-              {'\n\n'}
-              <span className="text-gray-500">// Response: status: PENDING | DECLINED</span>
-            </pre>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

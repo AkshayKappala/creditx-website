@@ -79,7 +79,7 @@ export function CTA() {
                 onClick={() => window.open('https://github.com/creditx-platform/creditx', '_blank')}
               >
                 <LuGithub className="mr-2 w-5 h-5" />
-                View on GitHub
+                Source
               </Button>
               <Button
                 size="lg"
