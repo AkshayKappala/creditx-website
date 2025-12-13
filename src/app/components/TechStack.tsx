@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
-import { SpringBootIcon, KafkaIcon, OracleIcon, DockerIcon, FlywayIcon, ZipkinIcon, JavaIcon, MavenIcon } from "./TechIcons";
+import { SpringBootIcon, SpringCloudIcon, KafkaIcon, OracleIcon, DockerIcon, FlywayIcon, ZipkinIcon, MavenIcon } from "./TechIcons";
 
 const technologies = [
   { name: "Spring Boot", category: "Framework", icon: SpringBootIcon, color: "text-green-400" },
   { name: "Oracle 23c", category: "Database", icon: OracleIcon, color: "text-red-400" },
   { name: "Apache Kafka", category: "Event Streaming", icon: KafkaIcon, color: "text-white" },
   { name: "Flyway", category: "Migration", icon: FlywayIcon, color: "text-blue-400" },
-  { name: "Spring Cloud", category: "Framework", icon: SpringBootIcon, color: "text-green-400" },
+  { name: "Spring Cloud", category: "Framework", icon: SpringCloudIcon, color: "text-green-400" },
   { name: "Zipkin", category: "Tracing", icon: ZipkinIcon, color: "text-purple-400" },
   { name: "Docker", category: "Container", icon: DockerIcon, color: "text-cyan-400" },
   { name: "Maven", category: "Build Tool", icon: MavenIcon, color: "text-orange-400" },

@@ -1,12 +1,20 @@
 import { motion } from "motion/react";
-import { Database, Zap, Server, GitBranch, Shield, Coins, Github } from "lucide-react";
+import {
+  LuCoins,
+  LuDatabase,
+  LuGitBranch,
+  LuGithub,
+  LuServer,
+  LuShield,
+  LuZap,
+} from "react-icons/lu";
 
 const services = [
   {
     id: 1,
     name: "creditMainServ",
     port: "8080",
-    icon: Server,
+    icon: LuServer,
     description: "Transaction orchestration & workflow management",
     color: "from-cyan-400 to-blue-500",
     position: { x: 0, y: 0 },
@@ -16,7 +24,7 @@ const services = [
     id: 2,
     name: "creditHoldServ",
     port: "8081",
-    icon: Shield,
+    icon: LuShield,
     description: "Hold authorization, fraud detection & blocklist",
     color: "from-purple-400 to-pink-500",
     position: { x: 1, y: 0 },
@@ -26,7 +34,7 @@ const services = [
     id: 3,
     name: "creditPostingServ",
     port: "8082",
-    icon: GitBranch,
+    icon: LuGitBranch,
     description: "Transaction settlement & posting",
     color: "from-pink-400 to-rose-500",
     position: { x: 0.5, y: 1 },
@@ -36,7 +44,7 @@ const services = [
     id: 4,
     name: "creditPromoServ",
     port: "8083",
-    icon: Coins,
+    icon: LuCoins,
     description: "Promotion evaluation & cashback calculation",
     color: "from-violet-400 to-purple-500",
     position: { x: 1.5, y: 1 },
@@ -131,7 +139,7 @@ export function Architecture() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="p-4 rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-500">
-                <Zap className="w-8 h-8 text-white" />
+                <LuZap className="w-8 h-8 text-white" />
               </div>
               <div>
                 <h3 className="text-2xl text-white mb-1">Apache Kafka Event Bus</h3>
@@ -181,7 +189,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
               <span className="text-xs text-cyan-400 font-mono">:{service.port}</span>
             </div>
             <div className="p-2 rounded-full bg-white/10 border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity">
-              <Github className="w-4 h-4 text-white" />
+              <LuGithub className="w-4 h-4 text-white" />
             </div>
           </div>
         </div>
@@ -191,7 +199,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         
         {/* Database indicator */}
         <div className="mt-6 flex items-center gap-2">
-          <Database className="w-4 h-4 text-cyan-400" />
+          <LuDatabase className="w-4 h-4 text-cyan-400" />
           <span className="text-sm text-gray-500">Oracle Schema</span>
         </div>
       </div>

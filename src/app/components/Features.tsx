@@ -1,39 +1,46 @@
 import { motion } from "motion/react";
-import { Globe, Lock, Zap, Code2, BarChart3, Workflow, Database, RefreshCw } from "lucide-react";
+import {
+  LuChartBar,
+  LuDatabase,
+  LuLock,
+  LuRefreshCw,
+  LuWorkflow,
+  LuZap,
+} from "react-icons/lu";
 
 const features = [
   {
-    icon: Workflow,
+    icon: LuWorkflow,
     title: "Saga Pattern",
     description: "Choreography-based saga for distributed transaction management across microservices",
     gradient: "from-cyan-400 to-blue-500",
   },
   {
-    icon: Database,
+    icon: LuDatabase,
     title: "Transactional Outbox",
     description: "At-least-once delivery guarantee with outbox pattern for reliable event publishing",
     gradient: "from-purple-400 to-pink-500",
   },
   {
-    icon: Zap,
+    icon: LuZap,
     title: "Event-Driven Architecture",
     description: "Apache Kafka event streaming with separate topics for transactions, holds, and promotions",
     gradient: "from-pink-400 to-rose-500",
   },
   {
-    icon: Lock,
+    icon: LuLock,
     title: "Fraud Detection",
     description: "Real-time hold authorization with integrated fraud checks and blocklist enforcement",
     gradient: "from-violet-400 to-purple-500",
   },
   {
-    icon: BarChart3,
+    icon: LuChartBar,
     title: "Distributed Tracing",
     description: "Full request tracing across all services with Zipkin and Spring Cloud Sleuth",
     gradient: "from-blue-400 to-cyan-500",
   },
   {
-    icon: RefreshCw,
+    icon: LuRefreshCw,
     title: "Automated Cashback",
     description: "Event-driven promotion evaluation and automatic cashback transaction creation",
     gradient: "from-emerald-400 to-teal-500",

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, CheckCircle, Clock, TrendingUp } from "lucide-react";
+import { LuArrowRight, LuCircleCheck, LuClock, LuTrendingUp } from "react-icons/lu";
 
 const flowSteps = [
   {
@@ -182,7 +182,7 @@ export function TransactionFlow() {
                     
                     {index < flowSteps.length - 1 && (
                       <div className="mt-4 flex items-center gap-2 text-sm text-purple-400">
-                        <ArrowRight className="w-4 h-4" />
+                        <LuArrowRight className="w-4 h-4" />
                         <span>Kafka event triggers next service</span>
                       </div>
                     )}
@@ -240,19 +240,19 @@ export function TransactionFlow() {
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           <div className="p-8 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent backdrop-blur-md border border-cyan-500/20 text-center">
-            <CheckCircle className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+            <LuCircleCheck className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
             <div className="text-4xl text-white mb-2">Saga</div>
             <div className="text-gray-400">Choreography Pattern</div>
           </div>
           
           <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 via-transparent to-transparent backdrop-blur-md border border-purple-500/20 text-center">
-            <Clock className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+            <LuClock className="w-12 h-12 text-purple-400 mx-auto mb-4" />
             <div className="text-4xl text-white mb-2">5 min</div>
             <div className="text-gray-400">Hold Expiry Check</div>
           </div>
           
           <div className="p-8 rounded-3xl bg-gradient-to-br from-pink-500/10 via-transparent to-transparent backdrop-blur-md border border-pink-500/20 text-center">
-            <TrendingUp className="w-12 h-12 text-pink-400 mx-auto mb-4" />
+            <LuTrendingUp className="w-12 h-12 text-pink-400 mx-auto mb-4" />
             <div className="text-4xl text-white mb-2">Outbox</div>
             <div className="text-gray-400">At-Least-Once Delivery</div>
           </div>

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles, Github, BookOpen } from "lucide-react";
+import { LuBookOpen, LuGithub, LuSparkles } from "react-icons/lu";
 import { Button } from "./ui/button";
 
 export function Hero() {
@@ -42,7 +42,7 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-8"
         >
-          <Sparkles className="w-4 h-4 text-cyan-400" />
+          <LuSparkles className="w-4 h-4 text-cyan-400" />
           <span className="text-sm text-gray-300">Event-driven transaction processing platform</span>
         </motion.div>
         
@@ -80,7 +80,7 @@ export function Hero() {
             className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-8 shadow-lg shadow-cyan-500/50"
             onClick={() => window.open('https://github.com/creditx-platform/creditx', '_blank')}
           >
-            <Github className="mr-2 w-5 h-5" />
+            <LuGithub className="mr-2 w-5 h-5" />
             View Repository
           </Button>
           <Button
@@ -89,7 +89,7 @@ export function Hero() {
             className="bg-white/5 hover:bg-white/10 text-white border-white/20 rounded-full px-8 backdrop-blur-md"
             onClick={() => window.open('https://github.com/creditx-platform/creditx#readme', '_blank')}
           >
-            <BookOpen className="mr-2 w-5 h-5" />
+            <LuBookOpen className="mr-2 w-5 h-5" />
             Read Documentation
           </Button>
         </motion.div>

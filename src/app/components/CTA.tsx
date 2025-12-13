@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Github, BookOpen } from "lucide-react";
+import { LuBookOpen, LuGithub } from "react-icons/lu";
 import { Button } from "./ui/button";
 
 export function CTA() {
@@ -78,7 +78,7 @@ export function CTA() {
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 rounded-full px-10 shadow-2xl shadow-cyan-500/50 text-lg"
                 onClick={() => window.open('https://github.com/creditx-platform/creditx', '_blank')}
               >
-                <Github className="mr-2 w-5 h-5" />
+                <LuGithub className="mr-2 w-5 h-5" />
                 View on GitHub
               </Button>
               <Button
@@ -87,7 +87,7 @@ export function CTA() {
                 className="bg-white/10 hover:bg-white/20 text-white border-white/30 rounded-full px-10 backdrop-blur-md text-lg"
                 onClick={() => window.open('https://github.com/creditx-platform/creditx#readme', '_blank')}
               >
-                <BookOpen className="mr-2 w-5 h-5" />
+                <LuBookOpen className="mr-2 w-5 h-5" />
                 Documentation
               </Button>
             </motion.div>
